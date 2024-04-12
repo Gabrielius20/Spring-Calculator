@@ -59,7 +59,7 @@ public class CalculatorController {
             String operation = numbers.get("operation");
 
             System.out.println("Results: " + numbers.entrySet());
-            // String calculate(int number1, int number2, String operation, ModelMap modelMap) {
+            // String calculate(int number1, int number2, String operation, ModelMap) {
             int result = switch (operation) {
                 case "+" -> number1 + number2;
                 case "-" -> number1 - number2;
@@ -79,5 +79,35 @@ public class CalculatorController {
             // prefiksas + jsp failo pavadinimas + sufiksas
             return "calculate";
         }
+    }
+
+    @GetMapping(value = "/allNumbers")
+    public String allNumbers(Model model) {
+        model.addAttribute("numbers", numberService.getAll());
+        return "allNumbers";
+    }
+
+    @GetMapping(value = "/showNum")
+    public String show(int id, Model model) {
+        model.addAttribute("number", numberService.getById(id));
+        return "number";
+    }
+
+    @GetMapping(value = "/delete")
+    public String delete(int id, Model model) {
+        numberService.delete(id);
+        model.addAttribute("number", numberService.getAll());
+        return "allNumbers";
+    }
+
+    @PostMapping(value = "/updateNumber")
+    public String update(int id, Model model) {
+        model.addAttribute("number", numberService.getById(id));
+        return "updateNumber";
+    }
+
+    @PostMapping(value = "/updateNum")
+    public String updateNumber(@ModelAttribute("number") Number number) {
+        return "redirect:/show?id=" + number.getId();
     }
 }

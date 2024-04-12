@@ -10,14 +10,18 @@ public class Number {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "number_id")
     private int id;
+
     @Min(value = 0, message = "Validation error: Number cannot be negative.")
     @Column(name = "number1")
     private int number1;
+
     @Min(value = 0, message = "Validation error: Number cannot be negative")
     @Column(name = "number2")
     private int number2;
+
     @Column(name = "operation")
     private String operation;
+
     @Column(name = "result")
     private int result;
 
@@ -37,6 +41,10 @@ public class Number {
     }
 
     public Number() {
+    }
+    // Needed to link numbers from backend to frontend
+    public Number(int id){
+        this.id = id;
     }
 
     public int getId() {
