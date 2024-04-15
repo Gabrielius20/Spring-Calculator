@@ -17,7 +17,7 @@
 <body>
     <form:form name="number" action="updateNum" method="post">
         <!-- Must give number id in the form, otherwise the backend will get null -->
-        <input type="hidden" name="id" value="${number.id}"><p>
+        <input type="number" name="id" value="${number.id}"><p>
 
         First Number:<br>
         <input type="number" name="number1" value="${number.number1}"><p>
@@ -30,6 +30,8 @@
 
         Result:<br>
         <input type="number" name="result" value="${number.result}">
+
+        <input type="submit" value="updateNum">
     </form:form>
 </body>
 

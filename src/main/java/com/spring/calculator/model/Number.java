@@ -43,9 +43,6 @@ public class Number {
     public Number() {
     }
     // Needed to link numbers from backend to frontend
-    public Number(int id){
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -81,6 +78,10 @@ public class Number {
 
     public void setResult(int result) {
         this.result = result;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

@@ -28,7 +28,7 @@
         <c:forEach var="number" items="${numbers}">
 
             <!-- Construct address for number updating by id -->
-            <c:url var="updateNum" value="/updateNum">
+            <c:url var="updateNumber" value="/updateNumber">
                 <c:param name="id" value="${number.id}"/>
             </c:url>
 
@@ -38,7 +38,7 @@
             </c:url>
 
             <!-- Construct number show address by id -->
-            <c:url var="showNumbers" value="/showNum">
+            <c:url var="showNum" value="/showNum">
                 <c:param name="id" value="${number.id}"/>
             </c:url>
 
@@ -51,10 +51,10 @@
 
                 <td>
 
-                    <!-- Show updating address --> <a href="${updateNum}">Change</a>
+                    <!-- Show updating address --> <a href="${updateNumber}">Change</a>
                     | <a href="${delete}"
                          onclick="if (!(confirm('Are you sure you want to delete this entry?'))) return false">Delete</a>
-                    | <!-- Show number address --> <a href="${number}">Show</a>
+                    | <!-- Show number address --> <a href="${showNum}">Show</a>
                 </td>
             </tr>
         </c:forEach>

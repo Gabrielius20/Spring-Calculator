@@ -87,9 +87,11 @@ public class CalculatorController {
         return "allNumbers";
     }
 
-    @GetMapping(value = "/showNum")
-    public String show(int id, Model model) {
+    @GetMapping(value = "/showNum{id}")
+    public String showNum(int id, Model model) {
+        System.out.println(id);
         model.addAttribute("number", numberService.getById(id));
+        System.out.println(numberService.getById(id));
         return "number";
     }
 
@@ -100,14 +102,15 @@ public class CalculatorController {
         return "allNumbers";
     }
 
-    @PostMapping(value = "/updateNumber")
+    @GetMapping(value = "/updateNumber{id}")
     public String update(int id, Model model) {
         model.addAttribute("number", numberService.getById(id));
         return "updateNumber";
     }
 
     @PostMapping(value = "/updateNum")
-    public String updateNumber(@ModelAttribute("number") Number number) {
-        return "redirect:/show?id=" + number.getId();
+    public String updateNum(@ModelAttribute("number") Number number) {
+        numberService.update(number);
+        return "redirect:/showNum?id=" + number.getId();
     }
 }

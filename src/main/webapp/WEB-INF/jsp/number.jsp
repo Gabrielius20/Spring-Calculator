@@ -17,31 +17,31 @@
     <table class="table table-striped">
         <tr>
             <td><b>ID:</b></td>
-            <td${number.id}></td>
+            <td>${number.id}</td>
         </tr>
 
         <tr>
             <td><b>First Number:</b></td>
-            <td${number.number1}></td>
+            <td>${number.number1}</td>
         </tr>
 
         <tr>
             <td><b>Operation:</b></td>
-            <td${number.operation}></td>
+            <td>${number.operation}</td>
         </tr>
 
         <tr>
             <td><b>Second Number:</b></td>
-            <td${number.number2}></td>
+            <td>${number.number2}</td>
         </tr>
 
         <tr>
             <td><b>Result</b></td>
-            <td${number.result}></td>
+            <td>${number.result}</td>
         </tr>
     </table>
 </div>
     <br>
-    <a type="button" href="allNumbers.jsp">Back</a>
+    <a type="button" href="${pageContext.request.contextPath}/allNumbers" class="button">Back</a>
 </body>
 </html>
