@@ -3,9 +3,10 @@ package com.spring.calculator.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +18,12 @@ public class User {
     private String username;
 
     @Email(message = "Enter a valid email adress")
+    @NotBlank(message = "Email is required")
     @Column(name = "email")
     private String email;
 
-    @Size(min = 12, message = "Password must be at least 12 characters long")
+
+    @NotBlank(message = "Password is required")
     @Column(name = "password")
     private String password;
 

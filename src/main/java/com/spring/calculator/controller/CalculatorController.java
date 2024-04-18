@@ -2,7 +2,6 @@ package com.spring.calculator.controller;
 
 import com.spring.calculator.model.Number;
 import com.spring.calculator.service.NumberService;
-import com.spring.calculator.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,18 +29,16 @@ import java.util.HashMap;
 @EnableAutoConfiguration
 public class CalculatorController {
     private final NumberService numberService;
-    private final UserService userService;
     @Autowired
-    public CalculatorController(@Qualifier("NumberService") NumberService numberService, @Qualifier("UserService") UserService userService) {
-        this.numberService = numberService;
-        this.userService = userService;
+    public CalculatorController(@Qualifier("NumberService") NumberService numberService) {
+        this.numberService = numberService;;
     }
 
 
     // Maršrutizavimo informacija. Šiuo atveju ji nurodo Spring karkasui,
     // kad visos HTTP užklausos, kurių kelias yra "/", bus apdorotos metodo home().
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String home(Model model) {
+    @RequestMapping(method = RequestMethod.GET, value = "/calculator")
+    public String calculator(Model model) {
         // Jeigu modelis "number" nepavyksta praeiti validacijos - per jį grąžinamos validacijos klaidos į vaizdą (view).
         model.addAttribute("number", new Number());
         // Grąžiname JSP failą, jis turi būti talpinamas 'webapp -> WEB-INF -> jsp' kataloge

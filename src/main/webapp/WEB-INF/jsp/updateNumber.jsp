@@ -1,38 +1,83 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Gabri
-  Date: 4/11/2024
-  Time: 11:58 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 
 <head>
-    <title>Number update</title>
+    <title>Number Update</title>
     <jsp:include page="header.jsp"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <form:form name="number" action="updateNum" method="post">
-        <!-- Must give number id in the form, otherwise the backend will get null -->
-        <input type="number" name="id" value="${number.id}"><p>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="form-container">
+                <h2 class="text-center">Number Update</h2>
 
-        First Number:<br>
-        <input type="number" name="number1" value="${number.number1}"><p>
+                <form:form modelAttribute="number" action="updateNum" method="post" class="needs-validation">
 
-        Operation:<br>
-        <input type="text" name="operation" value="${number.operation}">
+                    <div class="form-group">
+                        <label for="id">Number ID:</label>
+                        <input type="number" class="form-control" id="id" name="id" value="${number.id}" required>
+                        <div class="invalid-feedback">Please provide a valid number ID.</div>
+                    </div>
 
-        Second Number:<br>
-        <input type="number" name="number2" value="${number.number2}">
+                    <div class="form-group">
+                        <label for="number1">First Number:</label>
+                        <input type="number" class="form-control" id="number1" name="number1" value="${number.number1}" required>
+                        <div class="invalid-feedback">Please provide a valid number.</div>
+                    </div>
 
-        Result:<br>
-        <input type="number" name="result" value="${number.result}">
+                    <div class="form-group">
+                        <label for="operation">Operation:</label>
+                        <select class="form-control" id="operation" name="operation" required>
+                            <option value="">Select operation...</option>
+                            <option value="+">Addition</option>
+                            <option value="-">Subtraction</option>
+                            <option value="*">Multiplication</option>
+                            <option value="/">Division</option>
+                        </select>
+                        <div class="invalid-feedback">Please select an operation.</div>
+                    </div>
 
-        <input type="submit" value="updateNum">
-    </form:form>
+                    <div class="form-group">
+                        <label for="number2">Second Number:</label>
+                        <input type="number" class="form-control" id="number2" name="number2" value="${number.number2}" required>
+                        <div class="invalid-feedback">Please provide a valid number.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="result">Result:</label>
+                        <input type="number" class="form-control" id="result" name="result" value="${number.result}" required>
+                        <div class="invalid-feedback">Please provide a valid result.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Update Number</button>
+
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
