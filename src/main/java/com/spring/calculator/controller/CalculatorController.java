@@ -2,6 +2,7 @@ package com.spring.calculator.controller;
 
 import com.spring.calculator.model.Number;
 import com.spring.calculator.service.NumberService;
+import com.spring.calculator.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,9 +29,14 @@ import java.util.HashMap;
 
 @EnableAutoConfiguration
 public class CalculatorController {
+    private final NumberService numberService;
+    private final UserService userService;
     @Autowired
-    @Qualifier("NumberService")
-    public NumberService numberService;
+    public CalculatorController(@Qualifier("NumberService") NumberService numberService, @Qualifier("UserService") UserService userService) {
+        this.numberService = numberService;
+        this.userService = userService;
+    }
+
 
     // Maršrutizavimo informacija. Šiuo atveju ji nurodo Spring karkasui,
     // kad visos HTTP užklausos, kurių kelias yra "/", bus apdorotos metodo home().
@@ -87,7 +93,7 @@ public class CalculatorController {
         return "allNumbers";
     }
 
-    @GetMapping(value = "/showNum{id}")
+    @GetMapping(value = "/showNum")
     public String showNum(int id, Model model) {
         System.out.println(id);
         model.addAttribute("number", numberService.getById(id));
@@ -102,7 +108,7 @@ public class CalculatorController {
         return "allNumbers";
     }
 
-    @GetMapping(value = "/updateNumber{id}")
+    @GetMapping(value = "/updateNumber")
     public String update(int id, Model model) {
         model.addAttribute("number", numberService.getById(id));
         return "updateNumber";
